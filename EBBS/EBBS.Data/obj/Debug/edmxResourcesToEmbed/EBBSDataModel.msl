@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="EbbsModelStoreContainer" CdmEntityContainer="EbbsEntities">
+  <EntityContainerMapping StorageEntityContainer="ebbsModelStoreContainer" CdmEntityContainer="ebbsEntities">
     <EntitySetMapping Name="Board">
-      <EntityTypeMapping TypeName="EbbsModel.Board">
+      <EntityTypeMapping TypeName="ebbsModel.Board">
         <MappingFragment StoreEntitySet="Board">
           <ScalarProperty Name="bId" ColumnName="bId" />
           <ScalarProperty Name="categoryId" ColumnName="categoryId" />
@@ -14,7 +14,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Category">
-      <EntityTypeMapping TypeName="EbbsModel.Category">
+      <EntityTypeMapping TypeName="ebbsModel.Category">
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="cId" ColumnName="cId" />
           <ScalarProperty Name="categoryName" ColumnName="categoryName" />
@@ -22,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Comment">
-      <EntityTypeMapping TypeName="EbbsModel.Comment">
+      <EntityTypeMapping TypeName="ebbsModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
           <ScalarProperty Name="commentId" ColumnName="commentId" />
           <ScalarProperty Name="comment1" ColumnName="comment" />
@@ -33,7 +33,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Like">
-      <EntityTypeMapping TypeName="EbbsModel.Like">
+      <EntityTypeMapping TypeName="ebbsModel.Like">
         <MappingFragment StoreEntitySet="Like">
           <ScalarProperty Name="lId" ColumnName="lId" />
           <ScalarProperty Name="like1" ColumnName="like" />
@@ -44,7 +44,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Post">
-      <EntityTypeMapping TypeName="EbbsModel.Post">
+      <EntityTypeMapping TypeName="ebbsModel.Post">
         <MappingFragment StoreEntitySet="Post">
           <ScalarProperty Name="pId" ColumnName="pId" />
           <ScalarProperty Name="postTitle" ColumnName="postTitle" />
@@ -57,8 +57,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="ebbsModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="rId" ColumnName="rId" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SecurityQuestion">
-      <EntityTypeMapping TypeName="EbbsModel.SecurityQuestion">
+      <EntityTypeMapping TypeName="ebbsModel.SecurityQuestion">
         <MappingFragment StoreEntitySet="SecurityQuestion">
           <ScalarProperty Name="qId" ColumnName="qId" />
           <ScalarProperty Name="question" ColumnName="question" />
@@ -66,7 +74,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="EbbsModel.User">
+      <EntityTypeMapping TypeName="ebbsModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="userImage" ColumnName="userImage" />

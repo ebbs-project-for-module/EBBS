@@ -11,3 +11,17 @@ F:\EBBS angular project\EBBS\EBBS.Services\bin\Debug\EntityFramework.xml
 F:\EBBS angular project\EBBS\EBBS.Services\obj\Debug\EBBS.Services.csprojResolveAssemblyReference.cache
 F:\EBBS angular project\EBBS\EBBS.Services\obj\Debug\EBBS.Services.dll
 F:\EBBS angular project\EBBS\EBBS.Services\obj\Debug\EBBS.Services.pdb
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\ebbs.mdf
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\ebbs_log.ldf
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\EBBS.Services.dll
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\EBBS.Services.pdb
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\EBBS.Data.dll
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\EntityFramework.dll
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\EBBS.Data.pdb
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\EBBS.Data.dll.config
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\bin\Debug\EntityFramework.xml
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\obj\Debug\EBBS.Services.csprojAssemblyReference.cache
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\obj\Debug\EBBS.Services.csproj.CoreCompileInputs.cache
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\obj\Debug\EBBS.Services.csproj.CopyComplete
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\obj\Debug\EBBS.Services.dll
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Services\obj\Debug\EBBS.Services.pdb

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="EbbsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="ebbsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Board">
     <Key>
       <PropertyRef Name="bId" />
@@ -51,6 +51,13 @@
     <Property Name="boardId" Type="int" Nullable="false" />
     <Property Name="createdOn" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="rId" />
+    </Key>
+    <Property Name="rId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleName" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
   <EntityType Name="SecurityQuestion">
     <Key>
       <PropertyRef Name="qId" />
@@ -63,12 +70,12 @@
       <PropertyRef Name="userId" />
     </Key>
     <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="userImage" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userImage" Type="varchar" MaxLength="50" />
     <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="userType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userType" Type="int" Nullable="false" />
     <Property Name="questionId" Type="int" Nullable="false" />
     <Property Name="answer" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="lastLoginDetails" Type="datetime" Nullable="false" />
@@ -181,12 +188,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="EbbsModelStoreContainer">
+  <Association Name="FK__User__userType__5CD6CB2B">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="rId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="userType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ebbsModelStoreContainer">
     <EntitySet Name="Board" EntityType="Self.Board" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Like" EntityType="Self.Like" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Board__categoryI__2D27B809" Association="Self.FK__Board__categoryI__2D27B809">
@@ -223,6 +243,10 @@
     </AssociationSet>
     <AssociationSet Name="FK__User__questionId__276EDEB3" Association="Self.FK__User__questionId__276EDEB3">
       <End Role="SecurityQuestion" EntitySet="SecurityQuestion" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__userType__5CD6CB2B" Association="Self.FK__User__userType__5CD6CB2B">
+      <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>

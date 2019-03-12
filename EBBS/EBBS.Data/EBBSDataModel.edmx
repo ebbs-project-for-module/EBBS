@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EbbsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ebbsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Board">
           <Key>
             <PropertyRef Name="bId" />
@@ -56,6 +56,13 @@
           <Property Name="boardId" Type="int" Nullable="false" />
           <Property Name="createdOn" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="rId" />
+          </Key>
+          <Property Name="rId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="SecurityQuestion">
           <Key>
             <PropertyRef Name="qId" />
@@ -68,12 +75,12 @@
             <PropertyRef Name="userId" />
           </Key>
           <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userImage" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userImage" Type="varchar" MaxLength="50" />
           <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="userType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userType" Type="int" Nullable="false" />
           <Property Name="questionId" Type="int" Nullable="false" />
           <Property Name="answer" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="lastLoginDetails" Type="datetime" Nullable="false" />
@@ -186,12 +193,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EbbsModelStoreContainer">
+        <Association Name="FK__User__userType__5CD6CB2B">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="rId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="userType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ebbsModelStoreContainer">
           <EntitySet Name="Board" EntityType="Self.Board" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Like" EntityType="Self.Like" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Board__categoryI__2D27B809" Association="Self.FK__Board__categoryI__2D27B809">
@@ -230,12 +250,16 @@
             <End Role="SecurityQuestion" EntitySet="SecurityQuestion" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <AssociationSet Name="FK__User__userType__5CD6CB2B" Association="Self.FK__User__userType__5CD6CB2B">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EbbsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ebbsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Board">
           <Key>
             <PropertyRef Name="bId" />
@@ -299,6 +323,14 @@
           <NavigationProperty Name="Like" Relationship="Self.FK__Like__postId__37A5467C" FromRole="Post" ToRole="Like" />
           <NavigationProperty Name="User" Relationship="Self.FK__Post__creatorId__30F848ED" FromRole="Post" ToRole="User" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="rId" />
+          </Key>
+          <Property Name="rId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__userType__5CD6CB2B" FromRole="Role" ToRole="User" />
+        </EntityType>
         <EntityType Name="SecurityQuestion">
           <Key>
             <PropertyRef Name="qId" />
@@ -312,12 +344,12 @@
             <PropertyRef Name="userId" />
           </Key>
           <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="userType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userType" Type="Int32" Nullable="false" />
           <Property Name="questionId" Type="Int32" Nullable="false" />
           <Property Name="answer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastLoginDetails" Type="DateTime" Nullable="false" Precision="3" />
@@ -325,6 +357,7 @@
           <NavigationProperty Name="Comment" Relationship="Self.FK__Comment__comment__49C3F6B7" FromRole="User" ToRole="Comment" />
           <NavigationProperty Name="Like" Relationship="Self.FK__Like__likedBy__36B12243" FromRole="User" ToRole="Like" />
           <NavigationProperty Name="Post" Relationship="Self.FK__Post__creatorId__30F848ED" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__User__userType__5CD6CB2B" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="SecurityQuestion" Relationship="Self.FK__User__questionId__276EDEB3" FromRole="User" ToRole="SecurityQuestion" />
         </EntityType>
         <Association Name="FK__Board__categoryI__2D27B809">
@@ -423,6 +456,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__User__userType__5CD6CB2B">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="rId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="userType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__User__questionId__276EDEB3">
           <End Role="SecurityQuestion" Type="Self.SecurityQuestion" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -435,12 +480,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EbbsEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ebbsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Board" EntityType="Self.Board" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Comment" EntityType="Self.Comment" />
           <EntitySet Name="Like" EntityType="Self.Like" />
           <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" />
           <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="FK__Board__categoryI__2D27B809" Association="Self.FK__Board__categoryI__2D27B809">
@@ -475,6 +521,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
+          <AssociationSet Name="FK__User__userType__5CD6CB2B" Association="Self.FK__User__userType__5CD6CB2B">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
           <AssociationSet Name="FK__User__questionId__276EDEB3" Association="Self.FK__User__questionId__276EDEB3">
             <End Role="SecurityQuestion" EntitySet="SecurityQuestion" />
             <End Role="User" EntitySet="User" />
@@ -485,9 +535,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EbbsModelStoreContainer" CdmEntityContainer="EbbsEntities">
+        <EntityContainerMapping StorageEntityContainer="ebbsModelStoreContainer" CdmEntityContainer="ebbsEntities">
           <EntitySetMapping Name="Board">
-            <EntityTypeMapping TypeName="EbbsModel.Board">
+            <EntityTypeMapping TypeName="ebbsModel.Board">
               <MappingFragment StoreEntitySet="Board">
                 <ScalarProperty Name="bId" ColumnName="bId" />
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
@@ -499,7 +549,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="EbbsModel.Category">
+            <EntityTypeMapping TypeName="ebbsModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="cId" ColumnName="cId" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
@@ -507,7 +557,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comment">
-            <EntityTypeMapping TypeName="EbbsModel.Comment">
+            <EntityTypeMapping TypeName="ebbsModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="commentId" ColumnName="commentId" />
                 <ScalarProperty Name="comment1" ColumnName="comment" />
@@ -518,7 +568,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Like">
-            <EntityTypeMapping TypeName="EbbsModel.Like">
+            <EntityTypeMapping TypeName="ebbsModel.Like">
               <MappingFragment StoreEntitySet="Like">
                 <ScalarProperty Name="lId" ColumnName="lId" />
                 <ScalarProperty Name="like1" ColumnName="like" />
@@ -529,7 +579,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Post">
-            <EntityTypeMapping TypeName="EbbsModel.Post">
+            <EntityTypeMapping TypeName="ebbsModel.Post">
               <MappingFragment StoreEntitySet="Post">
                 <ScalarProperty Name="pId" ColumnName="pId" />
                 <ScalarProperty Name="postTitle" ColumnName="postTitle" />
@@ -542,8 +592,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="ebbsModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="rId" ColumnName="rId" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SecurityQuestion">
-            <EntityTypeMapping TypeName="EbbsModel.SecurityQuestion">
+            <EntityTypeMapping TypeName="ebbsModel.SecurityQuestion">
               <MappingFragment StoreEntitySet="SecurityQuestion">
                 <ScalarProperty Name="qId" ColumnName="qId" />
                 <ScalarProperty Name="question" ColumnName="question" />
@@ -551,7 +609,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="EbbsModel.User">
+            <EntityTypeMapping TypeName="ebbsModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="userImage" ColumnName="userImage" />

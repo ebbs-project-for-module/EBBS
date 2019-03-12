@@ -11,3 +11,17 @@ F:\EBBS angular project\EBBS\EBBS.Data\obj\Debug\EBBS.Data.pdb
 F:\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EBBS.Data.dll.config
 F:\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EBBS.Data.dll
 F:\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EBBS.Data.pdb
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\ebbs.mdf
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\ebbs_log.ldf
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EBBS.Data.dll.config
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EBBS.Data.dll
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EBBS.Data.pdb
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EntityFramework.dll
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EntityFramework.xml
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\obj\Debug\EBBS.Data.csprojAssemblyReference.cache
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\obj\Debug\EBBS.Data.csproj.CoreCompileInputs.cache
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\obj\Debug\EBBS.Data.csproj.CopyComplete
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\obj\Debug\EBBS.Data.dll
+C:\MY DEVICE\system design - MVC\BB\EBBS angular project\EBBS\EBBS.Data\obj\Debug\EBBS.Data.pdb

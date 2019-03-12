@@ -10,5 +10,13 @@ namespace EBBS.Data.IDAO
     {
 
         IList<EBBS.Data.SecurityQuestion> GetAllSecurityQuestions();
+
+        EBBS.Data.SecurityQuestion GetSecurityQuestion(int sqid);
+
+        bool AddSecurityQuestion(EBBS.Data.SecurityQuestion securityQuestion);
+
+        bool EditSecurityQuestion(EBBS.Data.SecurityQuestion newSecurityQuestion, int sqid);
+
+        bool DeleteSecurityQuestion(int sqid);
     }
 }

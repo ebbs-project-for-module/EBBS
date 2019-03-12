@@ -29,7 +29,7 @@ namespace EBBS.Data
         public string lastName { get; set; }
         public string username { get; set; }
         public string password { get; set; }
-        public string userType { get; set; }
+        public int userType { get; set; }
         public int questionId { get; set; }
         public string answer { get; set; }
         public System.DateTime lastLoginDetails { get; set; }
@@ -42,6 +42,7 @@ namespace EBBS.Data
         public virtual ICollection<Like> Like { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Post { get; set; }
+        public virtual Role Role { get; set; }
         public virtual SecurityQuestion SecurityQuestion { get; set; }
     }
 }
